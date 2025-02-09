@@ -15,12 +15,12 @@ test('Deve cadastrar um lead na fila de espera', async ({ page }) => {
 
   await page.locator('#name').fill('Adriano Legal');
   await page.locator('input[name=name]').fill('Forte');
-  await page.locator('input[placeholder="Seu nome completo"]').fill('Masculo');
+  await page.locator('input[placeholder="Informe seu nome"]').fill('Masculo');
 
-  await page.getByPlaceholder('Seu nome completo').fill('Booo');
+  await page.getByPlaceholder('Informe seu nome').fill('Booo');
 
   await page.locator('#email').fill('adrianolegal@gmail.com');
-  await page.getByPlaceholder('Seu email principal').fill('qq@yahho.com');
+  await page.getByPlaceholder('Informe seu emaIL').fill('qq@yahho.com');
 
   //await page.getByRole('button', { name: 'Quero entrar na fila!'}).click();
   //await page.getByText('Quero entrar na fila!').click()
@@ -40,7 +40,7 @@ test('Não deve cadastrar um lead na fila de espera com e-mail incorreto', async
   await expect(page.getByTestId('modal').getByRole('heading')).toHaveText('Fila de espera')
 
   await page.locator('#name').fill('Adriano Email Invalido');
-  await page.getByPlaceholder('Seu email principal').fill('ei.com');
+  await page.getByPlaceholder('Informe seu email').fill('ei.com');
 
   await page.getByText('Quero entrar na fila!').click();
 
@@ -66,7 +66,7 @@ test('Não deve cadastrar quando o nome não é preenchido', async ({ page }) =>
   await page.getByRole('button', { name: /Aperte o play/ }).click();
   await expect(page.getByTestId('modal').getByRole('heading')).toHaveText('Fila de espera')
 
-  await page.getByPlaceholder('Seu email principal').fill('adriano@gmail.com');
+  await page.getByPlaceholder('Informe seu email').fill('adriano@gmail.com');
 
   await page.getByText('Quero entrar na fila!').click();
   await expect(page.locator('.alert')).toHaveText('Campo obrigatório')
