@@ -1,18 +1,21 @@
 // @ts-check
 import { test, expect } from '@playwright/test'
 const { LandingPage } = require('../pages/LandingPage')
+const { Toast } = require('../pages/Components')
 
+let toast
 let landingPage
 
 test.beforeEach(async ({ page }) => {
   landingPage = new LandingPage(page)
+  toast = new Toast(page)
 })
 
 test('Deve cadastrar um lead na fila de espera', async ({ page }) => {
   await landingPage.visit()
   await landingPage.openLeadModal()
   await landingPage.submitLeadForm('Adriano Legal', 'adrianolegal@gmail.com')
-  await landingPage.toastHaveText('Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato!')
+  await toast.haveText('Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato!')
 })
 
 test('Não deve cadastrar um lead na fila de espera com e-mail incorreto', async ({ page }) => {
