@@ -2,6 +2,7 @@
 import { test, expect } from '@playwright/test'
 const { LandingPage } = require('../pages/LandingPage')
 const { Toast } = require('../pages/Components')
+const { faker } = require('@faker-js/faker')
 
 let toast
 let landingPage
@@ -12,9 +13,11 @@ test.beforeEach(async ({ page }) => {
 })
 
 test('Deve cadastrar um lead na fila de espera', async ({ page }) => {
+  const leadName = faker.person.fullName() // Amber Keebler
+  const LeadEmail = faker.internet.email() // Norma13@hotmail.com
   await landingPage.visit()
   await landingPage.openLeadModal()
-  await landingPage.submitLeadForm('Adriano Legal', 'adrianolegal@gmail.com')
+  await landingPage.submitLeadForm(leadName, LeadEmail)
   await toast.haveText('Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato!')
 })
 
