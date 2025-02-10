@@ -1,6 +1,6 @@
 // @ts-check
 import { test, expect } from '@playwright/test'
-const { LandingPage } = require('./pages/LandingPage')
+const { LandingPage } = require('../pages/LandingPage')
 
 let landingPage
 
