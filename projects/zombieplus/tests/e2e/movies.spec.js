@@ -1,27 +1,15 @@
-const { test, expect } = require('@playwright/test')
-
+const { test } = require('../support')
 const data = require('../support/fixtures/movies.json')
-const { LoginPage } = require('../pages/LoginPage')
-const { Toast } = require('../pages/Components')
-const { MoviesPage } = require('../pages/MoviesPage')
-
-let loginPage
-let toast
-let moviesPage
-
-test.beforeEach(async ({ page }) => {
-    loginPage = new LoginPage(page)
-    toast = new Toast(page)
-    moviesPage = new MoviesPage(page)
-})
+const { executeSQL } = require('../support/database')
 
 test('Deve poder cadastrarum novo filme', async ({ page }) => {
     const movie = data.create
+    await executeSQL(`DELETE FROM public.movies WHERE title = '${movie.title}';`)
 
-    await loginPage.visit()
-    await loginPage.submit('admin@zombieplus.com', 'pwd123')
-    await moviesPage.isLoggedIn()
+    await page.login.visit()
+    await page.login.submit('admin@zombieplus.com', 'pwd123')
+    await page.movies.isLoggedIn()
 
-    await moviesPage.create(movie.title, movie.overview, movie.company, movie.release_year)
-    await toast.containText('Cadastro realizado com sucesso!')
+    await page.movies.create(movie.title, movie.overview, movie.company, movie.release_year)
+    await page.toast.containText('Cadastro realizado com sucesso!')
 })
