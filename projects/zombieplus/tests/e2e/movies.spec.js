@@ -6,8 +6,7 @@ test('Deve poder cadastrarum novo filme', async ({ page }) => {
     const movie = data.create
     await executeSQL(`DELETE FROM public.movies WHERE title = '${movie.title}';`)
 
-    await page.login.visit()
-    await page.login.submit('admin@zombieplus.com', 'pwd123')
+    await page.login.do('admin@zombieplus.com', 'pwd123')
     await page.movies.isLoggedIn()
 
     await page.movies.create(movie.title, movie.overview, movie.company, movie.release_year)
@@ -15,8 +14,7 @@ test('Deve poder cadastrarum novo filme', async ({ page }) => {
 })
 
 test('Não deve Cadastrar quando os campos obrigatórios não são preenchidos', async ({ page }) => {
-    await page.login.visit()
-    await page.login.submit('admin@zombieplus.com', 'pwd123')
+    await page.login.do('admin@zombieplus.com', 'pwd123')
     await page.movies.isLoggedIn()
 
     await page.movies.goForm()

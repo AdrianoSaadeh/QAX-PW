@@ -11,6 +11,11 @@ export class LoginPage {
         await expect(loginForm).toBeVisible()
     }
 
+    async do(email, password) {
+        await this.visit()
+        await this.submit(email, password)
+    }
+
     async submit(email, password) {
         await this.page.getByPlaceholder('E-mail').fill(email)
         await this.page.getByPlaceholder('Senha').fill(password)
