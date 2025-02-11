@@ -13,8 +13,16 @@ export class MoviesPage {
         await expect(this.page).toHaveURL(/.*admin/)
     }
 
-    async create(title, overview, company, release_year) {
+    async goForm() {
         await this.page.locator('a[href$="register"]').click()
+    }
+
+    async submit() {
+        await this.page.getByRole('button', { name: 'Cadastrar' }).click()
+    }
+
+    async create(title, overview, company, release_year) {
+        await this.goForm()
 
         // outras formas de usar localizador abaixo
         // await this.page.locator('input[name-title]').fill(title)
@@ -40,6 +48,10 @@ export class MoviesPage {
             .filter({ hasText: release_year })
             .click()
 
-        await this.page.getByRole('button', { name: 'Cadastrar' }).click()
+        await this.submit()
+    }
+
+    async alertHaveText(target) {
+        await expect(this.page.locator('.alert')).toHaveText(target)
     }
 }
