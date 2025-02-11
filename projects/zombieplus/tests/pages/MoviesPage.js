@@ -5,12 +5,15 @@ export class MoviesPage {
         this.page = page
     }
 
-    async isLoggedIn() {
-        const logoutLink = this.page.locator('a[href="/logout"]')
-        await expect(logoutLink).toBeVisible()
+    async isLoggedIn(userName) {
+        // const logoutLink = this.page.locator('a[href="/logout"]')
+        // await expect(logoutLink).toBeVisible()
 
-        await this.page.waitForLoadState('networkidle')
-        await expect(this.page).toHaveURL(/.*admin/)
+        // await this.page.waitForLoadState('networkidle')
+        // await expect(this.page).toHaveURL(/.*admin/)
+
+        const loggerUser = this.page.locator('.logged-user')
+        await expect(loggerUser).toHaveText(`Olá, ${userName}`)
     }
 
     async goForm() {
