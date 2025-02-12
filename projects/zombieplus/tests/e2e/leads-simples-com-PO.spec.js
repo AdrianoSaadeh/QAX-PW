@@ -1,15 +1,15 @@
 // @ts-check
 import { test, expect } from '@playwright/test'
 const { LandingPage } = require('../pages/LandingPage')
-const { Toast } = require('../pages/Components')
+const { Popup } = require('../pages/Components')
 const { faker } = require('@faker-js/faker')
 
-let toast
+let popup
 let landingPage
 
 test.beforeEach(async ({ page }) => {
   landingPage = new LandingPage(page)
-  toast = new Toast(page)
+  popup = new Popup(page)
 })
 
 test('Deve cadastrar um lead na fila de espera', async ({ page }) => {
@@ -18,7 +18,7 @@ test('Deve cadastrar um lead na fila de espera', async ({ page }) => {
   await landingPage.visit()
   await landingPage.openLeadModal()
   await landingPage.submitLeadForm(leadName, LeadEmail)
-  await toast.containText('Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato!')
+  await popup.haveText('Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato.')
 })
 
 test('Não deve cadastrar um lead quando o email já existe', async ({ page, request }) => {
@@ -36,7 +36,7 @@ test('Não deve cadastrar um lead quando o email já existe', async ({ page, req
   await landingPage.visit()
   await landingPage.openLeadModal()
   await landingPage.submitLeadForm(leadName, LeadEmail)
-  await toast.containText('O endereço de e-mail fornecido já está registrado em nossa fila de espera.')
+  await popup.haveText('Verificamos que o endereço de e-mail fornecido já consta em nossa lista de espera. Isso significa que você está um passo mais perto de aproveitar nossos serviços.')
 })
 
 test('Não deve cadastrar um lead na fila de espera com e-mail incorreto', async ({ page }) => {
