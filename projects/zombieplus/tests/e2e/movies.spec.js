@@ -1,10 +1,14 @@
 const { test } = require('../support')
 const data = require('../support/fixtures/movies.json')
 const { executeSQL } = require('../support/database')
+import { expect } from '@playwright/test'
+
+test.beforeAll(async () => {
+    await executeSQL(`DELETE FROM public.movies;`)
+})
 
 test('Deve poder cadastrar um novo filme', async ({ page }) => {
     const movie = data.create
-    await executeSQL(`DELETE FROM public.movies WHERE title = '${movie.title}';`)
 
     await page.login.do('admin@zombieplus.com', 'pwd123')
     await page.movies.isLoggedIn('Admin')
@@ -13,8 +17,9 @@ test('Deve poder cadastrar um novo filme', async ({ page }) => {
     await page.toast.containText('Cadastro realizado com sucesso!')
 })
 
-test('Não deve cadastrar um filme duplicado', async ({ page }) => {
-    const movie = data.create
+test('Não deve cadastrar um filme duplicado', async ({ page, request }) => {
+    const movie = data.duplicate
+    await request.api.postMovie(movie)
 
     await page.login.do('admin@zombieplus.com', 'pwd123')
     await page.movies.isLoggedIn('Admin')
