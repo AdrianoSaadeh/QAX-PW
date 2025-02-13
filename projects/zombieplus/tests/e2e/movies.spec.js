@@ -17,6 +17,18 @@ test('Deve poder cadastrar um novo filme', async ({ page }) => {
     await page.popup.haveText(`O filme '${movie.title}' foi adicionado ao catálogo.`)
 })
 
+test('Deve poder remover um filme', async ({ page, request }) => {
+    const movie = data.to_remove
+    await request.api.postMovie(movie)
+
+    await page.login.do('admin@zombieplus.com', 'pwd123')
+    await page.movies.isLoggedIn('Admin')
+
+    await page.movies.remove(movie.title)
+    await page.popup.haveText('Filme removido com sucesso.')
+})
+
+
 test('Não deve cadastrar um filme duplicado', async ({ page, request }) => {
     const movie = data.duplicate
     await request.api.postMovie(movie)
@@ -40,4 +52,18 @@ test('Não deve Cadastrar quando os campos obrigatórios não são preenchidos',
         'Campo obrigatório',
         'Campo obrigatório'
     ])
+})
+
+test('Deve realizar a busca pelo termo zumbi', async ({ page, request }) => {
+    const movies = data.search
+    movies.data.forEach(async (movie) => {
+        await request.api.postMovie(movie)
+    })
+
+    await page.login.do('admin@zombieplus.com', 'pwd123')
+    await page.movies.isLoggedIn('Admin')
+
+    await page.movies.search(movies.input)
+    const rows = page.getByRole('row')
+    await expect(rows).toContainText(movies.outputs)
 })

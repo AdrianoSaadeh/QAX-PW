@@ -1,4 +1,5 @@
 import { expect } from '@playwright/test'
+import exp from 'constants'
 
 export class MoviesPage {
     constructor(page) {
@@ -61,8 +62,19 @@ export class MoviesPage {
         await this.submit()
     }
 
+    async search(target) {
+        await this.page.getByPlaceholder('Busque pelo nome').fill(target)
+        await this.page.locator('.actions button').click()
+    }
+
     async alertHaveText(target) {
         await expect(this.page.locator('.alert')).toHaveText(target)
+    }
+
+    async remove(title) {
+        // exemplo usando XPath =>  //td[text()="A Noite dos Mortos-Vivos"]/..//button
+        await this.page.getByRole('row', { name: title }).getByRole('button').click()
+        await this.page.click('.confirm-removal')
     }
 
 }
