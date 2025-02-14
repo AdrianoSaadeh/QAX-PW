@@ -3,9 +3,14 @@ import { test, expect } from '@playwright/test'
 const { LandingPage } = require('../pages/LandingPage')
 const { Popup } = require('../pages/Components')
 const { faker } = require('@faker-js/faker')
+const { executeSQL } = require('../support/database')
 
 let popup
 let landingPage
+
+test.beforeAll(async () => {
+  await executeSQL('DELETE FROM public.leads;')
+})
 
 test.beforeEach(async ({ page }) => {
   landingPage = new LandingPage(page)

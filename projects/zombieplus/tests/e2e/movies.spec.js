@@ -64,6 +64,5 @@ test('Deve realizar a busca pelo termo zumbi', async ({ page, request }) => {
     await page.movies.isLoggedIn('Admin')
 
     await page.movies.search(movies.input)
-    const rows = page.getByRole('row')
-    await expect(rows).toContainText(movies.outputs)
+    await page.movies.tableHave(movies.outputs)
 })
