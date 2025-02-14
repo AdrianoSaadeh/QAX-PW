@@ -1,5 +1,4 @@
 import { expect } from '@playwright/test'
-import exp from 'constants'
 
 export class MoviesPage {
     constructor(page) {
@@ -39,7 +38,7 @@ export class MoviesPage {
 
         //estrategia para pegar o conteudo da lista flutuante que nao pode ser inspecionada
         const html = await this.page.content()
-        console.log(html)
+        //console.log(html)
 
         await this.page.locator('.react-select__option')
             .filter({ hasText: movie.company })
