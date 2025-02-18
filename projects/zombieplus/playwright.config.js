@@ -37,7 +37,7 @@ export default defineConfig({
     screenshot: 'on',
     video: 'on',
     baseURL: process.env.BASE_URL,
-    viewport: { width: 1440, height: 900 }
+    viewport: { width: 1920, height: 1080 }
   },
 
   /* Configure projects for major browsers */

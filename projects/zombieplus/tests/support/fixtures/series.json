@@ -1,0 +1,66 @@
+{
+    "create": {
+        "title": "The Walking Dead",
+        "overview": "Um grupo de sobreviventes luta para se manter vivo em um mundo devastado por um apocalipse zumbi, enfrentando perigos tanto humanos quanto mortos-vivos.",
+        "company": "Paramount Pictures",
+        "release_year": 2010,
+        "seasons": "11",
+        "featured": true,
+        "cover": "/covers/series/twd.png"
+    },
+    "duplicate": {
+        "title": "Resident Evil: No Escuro Absoluto",
+        "overview": "Leon S. Kennedy e Claire Redfield enfrentam uma conspiração sombria e uma nova ameaça biológica em uma série de eventos aterrorizantes.",
+        "company": "Paramount Pictures",
+        "release_year": 2021,
+        "seasons": "1",
+        "featured": false,
+        "cover": "/covers/series/resident-evil-darkness.jpg"
+    },
+    "to_remove": {
+        "title": "Kingdom",
+        "overview": "Durante a dinastia Joseon na Coreia, um príncipe herdeiro investiga uma misteriosa praga que transforma as pessoas em mortos-vivos.",
+        "company": "Amazon Studios",
+        "release_year": 2019,
+        "seasons": "2",
+        "featured": false,
+        "cover": "/covers/series/kingdom.jpg"
+    },
+    "search": {
+        "input": "zumbi",
+        "outputs": [
+            "Z Nation",
+            "Black Summer",
+            "iZombie"
+        ],
+        "data": [
+            {
+                "title": "Z Nation",
+                "overview": "Um grupo de sobreviventes deve transportar o único homem imune ao vírus zumbi através dos EUA para criar uma cura.",
+                "company": "Amazon Studios",
+                "release_year": 2014,
+                "seasons": "5",
+                "featured": true,
+                "cover": "/covers/series/z-nation.png"
+            },
+            {
+                "title": "Black Summer",
+                "overview": "Nos primeiros dias de um apocalipse zumbi, um grupo de estranhos se une para sobreviver e encontrar entes queridos.",
+                "company": "Universal Pictures",
+                "release_year": 2019,
+                "seasons": "2",
+                "featured": false,
+                "cover": "/covers/series/black-summer.png"
+            },
+            {
+                "title": "iZombie",
+                "overview": "Uma médica legista descobre que se transformou em zumbi e precisa comer cérebros para manter sua humanidade, ajudando a polícia a resolver crimes.",
+                "company": "Universal Pictures",
+                "release_year": 2015,
+                "seasons": "5",
+                "featured": false,
+                "cover": "/covers/series/izombie.png"
+            }
+        ]
+    }
+}
