@@ -1,7 +1,6 @@
 const { test } = require('../support')
 const data = require('../support/fixtures/movies.json')
 const { executeSQL } = require('../support/database')
-import { expect } from '@playwright/test'
 
 test.beforeAll(async () => {
     await executeSQL(`DELETE FROM public.movies;`)

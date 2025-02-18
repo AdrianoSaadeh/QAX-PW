@@ -1,5 +1,4 @@
 import { expect } from '@playwright/test'
-import exp from 'constants'
 
 export class MoviesPage {
     constructor(page) {
@@ -39,14 +38,16 @@ export class MoviesPage {
 
         //estrategia para pegar o conteudo da lista flutuante que nao pode ser inspecionada
         const html = await this.page.content()
-        console.log(html)
+        //console.log(html)
 
         await this.page.locator('.react-select__option')
             .filter({ hasText: movie.company })
             .click()
 
-
         await this.page.locator('#select_year .react-select__indicator').click()
+
+        const html2 = await this.page.content()
+        console.log(html2)
 
         await this.page.locator('.react-select__option')
             .filter({ hasText: movie.release_year })
@@ -82,4 +83,7 @@ export class MoviesPage {
         await this.page.click('.confirm-removal')
     }
 
+    async goSeriesPage() {
+        await this.page.locator('a[href="/admin/tvshows"]').click()
+    }
 }
