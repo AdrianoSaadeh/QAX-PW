@@ -47,6 +47,16 @@ test('Deve poder cadastrar uma nova série', async ({ page }) => {
 })
 
 test('Deve poder remover uma série', async ({ page, request }) => {
+    const series = new SeriesPage(page)
+    const serie = data.to_remove
+    await request.api.postSerie(serie)
+
+    await page.login.do('admin@zombieplus.com', 'pwd123')
+    await page.movies.isLoggedIn('Admin')
+    await page.movies.goSeriesPage()
+
+    await series.removeSerie(serie.title)
+    await page.popup.haveText('Série removida com sucesso.')
 
 })
 

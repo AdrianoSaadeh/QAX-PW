@@ -57,8 +57,7 @@ export class SeriesPage {
         await expect(rows).toContainText(content)
     }
 
-    async remove(title) {
-        // exemplo usando XPath =>  //td[text()="A Noite dos Mortos-Vivos"]/..//button
+    async removeSerie(title) {
         await this.page.getByRole('row', { name: title }).getByRole('button').click()
         await this.page.click('.confirm-removal')
     }
