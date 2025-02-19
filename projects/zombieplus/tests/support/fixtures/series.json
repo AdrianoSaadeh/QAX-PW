@@ -29,37 +29,37 @@
     "search": {
         "input": "zumbi",
         "outputs": [
-            "Z Nation",
-            "Black Summer",
-            "iZombie"
+            "Zumbi Nation",
+            "Black Zumbi",
+            "iZumbi"
         ],
         "data": [
             {
-                "title": "Z Nation",
+                "title": "Zumbi Nation",
                 "overview": "Um grupo de sobreviventes deve transportar o único homem imune ao vírus zumbi através dos EUA para criar uma cura.",
                 "company": "Amazon Studios",
                 "release_year": 2014,
                 "seasons": "5",
                 "featured": true,
-                "cover": "/covers/series/z-nation.png"
+                "cover": "/covers/series/kingdom.jpg"
             },
             {
-                "title": "Black Summer",
+                "title": "Black Zumbi",
                 "overview": "Nos primeiros dias de um apocalipse zumbi, um grupo de estranhos se une para sobreviver e encontrar entes queridos.",
                 "company": "Universal Pictures",
                 "release_year": 2019,
                 "seasons": "2",
                 "featured": false,
-                "cover": "/covers/series/black-summer.png"
+                "cover": "/covers/series/kingdom.jpg"
             },
             {
-                "title": "iZombie",
+                "title": "iZumbi",
                 "overview": "Uma médica legista descobre que se transformou em zumbi e precisa comer cérebros para manter sua humanidade, ajudando a polícia a resolver crimes.",
                 "company": "Universal Pictures",
                 "release_year": 2015,
                 "seasons": "5",
                 "featured": false,
-                "cover": "/covers/series/izombie.png"
+                "cover": "/covers/series/kingdom.jpg"
             }
         ]
     }

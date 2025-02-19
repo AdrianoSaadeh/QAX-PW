@@ -90,10 +90,22 @@ test('Não deve cadastrar uma série quando os campos obrigatórios não são pr
         'Campo obrigatório',
         'Campo obrigatório (apenas números)'
     ])
-
 })
 
 test('Deve realizar a busca da série pelo termo zumbi', async ({ page, request }) => {
+    const series = new SeriesPage(page)
 
+    const seriesJson = data.search
 
+    //usando for of neste caso que respeita await, garantindo que as requisições sejam executadas na ordem correta
+    for (const serie of seriesJson.data) {
+        await request.api.postSerie(serie)
+    }
+
+    await page.login.do('admin@zombieplus.com', 'pwd123')
+    await page.movies.isLoggedIn('Admin')
+    await page.movies.goSeriesPage()
+
+    await series.search(seriesJson.input)
+    await series.tableHave(seriesJson.outputs)
 })
