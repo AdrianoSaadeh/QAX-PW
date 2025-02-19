@@ -52,7 +52,16 @@ test('Deve poder remover uma série', async ({ page, request }) => {
 
 
 test('Não deve cadastrar uma série duplicada', async ({ page, request }) => {
+    const series = new SeriesPage(page)
+    const serie = data.duplicate
+    await request.api.postSerie(serie)
 
+    await page.login.do('admin@zombieplus.com', 'pwd123')
+    await page.movies.isLoggedIn('Admin')
+    await page.movies.goSeriesPage()
+
+    await series.create(serie)
+    await page.popup.haveText(`O título '${serie.title}' já consta em nosso catálogo. Por favor, verifique se há necessidade de atualizações ou correções para este item.`)
 })
 
 test('Não deve cadastrar uma série quando os campos obrigatórios não são preenchidos', async ({ page }) => {
